@@ -58,7 +58,7 @@ palimpsest/
 │   │       │   ├── v1.0.0/
 │   │       │   │   ├── command.md             # Markdown with frontmatter
 │   │       │   │   ├── metadata.toml
-│   │       │   │   └── authoring-conversation.jsonl
+│   │       │   │   └── authoring-conversation.jsonl  # Optional: only if authored in palimpsest
 │   │       │   └── v1.1.0/
 │   │       └── sessions/
 │   │           └── session-{timestamp}-v1.0.0.jsonl

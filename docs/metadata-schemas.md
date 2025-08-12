@@ -108,21 +108,17 @@ domains = ["string"]             # Optional: Technical domains
 [command]
 id = "string"                    # Required: Unique command identifier
 type = "slash-command"           # Required: Always "slash-command"
-name = "string"                  # Required: Command name (without /)
 title = "string"                 # Required: Human-readable title
-description = "string"           # Required: Purpose description
 version = "string"               # Required: Semantic version
 created = "datetime"             # Required: Creation timestamp
 updated = "datetime"             # Required: Last update timestamp
 
 [author]
-name = "string"                  # Required: Author name
+name = "string"                  # Required: Author name (who added to palimpsest)
 email = "string"                 # Optional: Author email
 
 [usage]
-namespace = "string"             # Optional: Command namespace (e.g., "frontend")
 arguments = ["string"]           # Optional: Expected argument names
-file_patterns = ["string"]       # Optional: File glob patterns for context
 requires_selection = false       # Optional: Requires text selection
 
 [behavior]
@@ -138,10 +134,22 @@ source_session = "string"        # Optional: Source session ID
 generation_timestamp = "datetime" # Optional: When generated
 manually_edited = false          # Optional: Has been manually modified
 
+[source]
+type = "string"                  # Optional: "external", "adapted", "original"
+url = "string"                   # Optional: Source URL if external
+original_author = "string"       # Optional: Original author if external
+license = "string"               # Optional: License information
+adapted = false                  # Optional: Whether adapted from external source
+adaptation_notes = "string"      # Optional: Notes about adaptations made
+
 [tags]
 categories = ["string"]          # Required: Command categories
 domains = ["string"]             # Optional: Subject domains
 contexts = ["string"]            # Optional: Usage contexts (coding, review, debug)
+
+[lineage]
+parent_version = "string"        # Optional: Previous version
+deprecated = false               # Optional: Whether deprecated
 ```
 
 ## palimpsest.toml Schema
@@ -193,7 +201,7 @@ validate_provenance = true       # Optional: Validate source links
 - All `[prompt]`, `[spec]`, or `[command]` sections must have: id, type, title, version, created
 - All prompts/commands must have at least one category tag
 - Meta-prompts must specify target_types
-- Slash commands must specify name (command name without /)
+- External sources should include `[source]` section with type and attribution
 
 ### Format Validation
 - Versions must follow semantic versioning (v1.0.0)

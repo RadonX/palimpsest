@@ -24,6 +24,8 @@ A filesystem-only layout for storing meta prompts, the single conversation that 
 - Store the exact session that created each generated prompt
 - Maintain lineage across prompt versions
 - Support manual editing of generated prompts
+- Track external sources with proper attribution
+- Support adapted prompts from external repositories
 
 ### 4. Version Management
 - Semantic versioning for all prompts
@@ -57,6 +59,8 @@ A filesystem-only layout for storing meta prompts, the single conversation that 
 - Session artifacts preserved in meta-prompt sessions
 - Bidirectional tracking in provenance.json
 - Support for manual editing tracking
+- External source attribution with URL and author tracking
+- Adaptation notes for modified external content
 
 ## Non-Goals
 

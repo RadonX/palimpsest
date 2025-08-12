@@ -75,7 +75,31 @@ Review the provided code for:
 # 4. Create metadata
 cp templates/metadata-template.toml \
    prompts/slash-commands/review-code/versions/v1.0.0/metadata.toml
-# Edit to include [command] section instead of [prompt]
+# Edit to include [command] section (omit empty fields like namespace, license)
+
+# 5. Create authoring conversation (only if authored in palimpsest)
+# Skip this step for external/adapted commands
+```
+
+#### Option 3: External/Adapted Commands
+```bash
+# 1. Create structure for external command
+mkdir -p prompts/slash-commands/external-command/versions/v1.0.0
+
+# 2. Copy/adapt external command content
+# Create command.md with adapted content
+
+# 3. Create metadata with source attribution
+cp templates/metadata-template.toml \
+   prompts/slash-commands/external-command/versions/v1.0.0/metadata.toml
+
+# Edit metadata.toml to include [source] section:
+[source]
+type = "external"
+url = "https://github.com/user/repo/path/to/command.md"
+original_author = "original-author"
+
+# 4. Do NOT create authoring-conversation.jsonl for external sources
 ```
 
 ### Creating a New Regular Prompt
