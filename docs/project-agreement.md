@@ -16,6 +16,7 @@ A filesystem-only layout for storing meta prompts, the single conversation that 
 - **Meta-prompts**: Generate other prompts
 - **Regular prompts**: Standard prompts for specific tasks  
 - **Dev specs**: Development specifications and requirements
+- **Slash commands**: Interactive Claude Code commands with frontmatter
 - **Extensible**: Support for additional prompt types
 
 ### 3. Complete Provenance Tracking
@@ -41,6 +42,7 @@ A filesystem-only layout for storing meta prompts, the single conversation that 
 ### File Formats
 - **TOML**: Configuration and metadata files (human-readable)
 - **TXT**: Prompt content (plain text)
+- **Markdown**: Slash commands with YAML frontmatter (Claude Code compatible)
 - **JSONL**: Conversations and sessions (streaming, appendable)
 - **JSON**: Index files and structured data
 

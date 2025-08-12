@@ -33,6 +33,51 @@ cp templates/metadata-template.toml prompts/meta-prompts/my-first-generator/vers
 
 ## Daily Workflows
 
+### Creating a New Slash Command
+
+#### Option 1: Generated from Meta-Prompt
+```bash
+# Generated slash commands appear as:
+# prompts/meta-prompts/{id}/sessions/generated-prompts/slash-{artifact}.md
+
+# Copy to slash command location:
+mkdir -p prompts/slash-commands/new-command/versions/v1.0.0
+cp prompts/meta-prompts/{id}/sessions/generated-prompts/slash-{artifact}.md \
+   prompts/slash-commands/new-command/versions/v1.0.0/command.md
+
+# Create metadata with provenance
+# Edit metadata.toml to include [provenance] section and [behavior] settings
+```
+
+#### Option 2: Manual Creation
+```bash
+# 1. Create structure
+mkdir -p prompts/slash-commands/review-code/versions/v1.0.0
+
+# 2. Create command from template
+cp templates/slash-command-template.md \
+   prompts/slash-commands/review-code/versions/v1.0.0/command.md
+
+# 3. Edit command.md with frontmatter:
+---
+tools_allowed: [read, write]
+extended_thinking: true
+description: "Review code for best practices and issues"
+---
+
+# Code Review Command
+Review the provided code for:
+- Best practices
+- Potential bugs
+- Performance issues
+- Security concerns
+
+# 4. Create metadata
+cp templates/metadata-template.toml \
+   prompts/slash-commands/review-code/versions/v1.0.0/metadata.toml
+# Edit to include [command] section instead of [prompt]
+```
+
 ### Creating a New Regular Prompt
 
 #### Option 1: Generated from Meta-Prompt
@@ -124,6 +169,9 @@ ls prompts/meta-prompts/
 
 # List all dev specs
 ls prompts/dev-specs/
+
+# List all slash commands
+ls prompts/slash-commands/
 ```
 
 ### Performance Analysis
@@ -181,9 +229,10 @@ done
 ## File Organization Tips
 
 ### Naming Conventions
-- **Prompt IDs**: Use kebab-case (`react-code-reviewer`)
+- **Prompt/Command IDs**: Use kebab-case (`react-code-reviewer`, `review-code`)
 - **Versions**: Always use semantic versioning (`v1.0.0`)
 - **Sessions**: Include timestamp and version (`session-20250812-143000-v1.0.0.jsonl`)
+- **Command Names**: Use short, descriptive names without namespace (`review`, `optimize`)
 
 ### Directory Management
 - Keep sessions directory clean (archive old sessions if needed)
@@ -214,7 +263,7 @@ git tag prompt-react-reviewer-v1.0.0
 
 ### Scripting
 ```bash
-# Example: Create new prompt script
+# Example: Create new prompt/command script
 #!/bin/bash
 PROMPT_TYPE=$1
 PROMPT_ID=$2
@@ -223,8 +272,14 @@ VERSION=${3:-v1.0.0}
 mkdir -p "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION"
 mkdir -p "prompts/$PROMPT_TYPE/$PROMPT_ID/sessions"
 
-cp "templates/${PROMPT_TYPE%-*}-template.txt" \
-   "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION/prompt.txt"
+# Handle different content file extensions
+if [[ "$PROMPT_TYPE" == "slash-commands" ]]; then
+    cp "templates/slash-command-template.md" \
+       "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION/command.md"
+else
+    cp "templates/${PROMPT_TYPE%-*}-template.txt" \
+       "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION/prompt.txt"
+fi
 
 cp "templates/metadata-template.toml" \
    "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION/metadata.toml"

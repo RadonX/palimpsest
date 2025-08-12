@@ -102,6 +102,48 @@ categories = ["string"]          # Required: Specification categories
 domains = ["string"]             # Optional: Technical domains
 ```
 
+### Slash Command Schema
+
+```toml
+[command]
+id = "string"                    # Required: Unique command identifier
+type = "slash-command"           # Required: Always "slash-command"
+name = "string"                  # Required: Command name (without /)
+title = "string"                 # Required: Human-readable title
+description = "string"           # Required: Purpose description
+version = "string"               # Required: Semantic version
+created = "datetime"             # Required: Creation timestamp
+updated = "datetime"             # Required: Last update timestamp
+
+[author]
+name = "string"                  # Required: Author name
+email = "string"                 # Optional: Author email
+
+[usage]
+namespace = "string"             # Optional: Command namespace (e.g., "frontend")
+arguments = ["string"]           # Optional: Expected argument names
+file_patterns = ["string"]       # Optional: File glob patterns for context
+requires_selection = false       # Optional: Requires text selection
+
+[behavior]
+tools_allowed = ["string"]       # Optional: Allowed tools (read, write, bash, etc.)
+extended_thinking = false        # Optional: Enable extended thinking mode
+bash_execution = false           # Optional: Allow bash command execution
+
+[provenance]
+source_type = "string"           # Optional: "meta-prompt" if generated
+source_id = "string"             # Optional: Source meta-prompt ID
+source_version = "string"        # Optional: Source version
+source_session = "string"        # Optional: Source session ID
+generation_timestamp = "datetime" # Optional: When generated
+manually_edited = false          # Optional: Has been manually modified
+
+[tags]
+categories = ["string"]          # Required: Command categories
+domains = ["string"]             # Optional: Subject domains
+contexts = ["string"]            # Optional: Usage contexts (coding, review, debug)
+```
+
 ## palimpsest.toml Schema
 
 ```toml
@@ -137,6 +179,7 @@ include_content_search = true    # Optional: Index file contents
 default_meta_prompt = "string"   # Optional: Default template file
 default_regular_prompt = "string" # Optional: Default template file
 default_dev_spec = "string"      # Optional: Default template file
+default_slash_command = "string" # Optional: Default template file
 
 [validation]
 require_metadata = true          # Optional: Require metadata.toml
@@ -147,9 +190,10 @@ validate_provenance = true       # Optional: Validate source links
 ## Validation Rules
 
 ### Required Fields
-- All `[prompt]` or `[spec]` sections must have: id, type, title, version, created
-- All prompts must have at least one category tag
+- All `[prompt]`, `[spec]`, or `[command]` sections must have: id, type, title, version, created
+- All prompts/commands must have at least one category tag
 - Meta-prompts must specify target_types
+- Slash commands must specify name (command name without /)
 
 ### Format Validation
 - Versions must follow semantic versioning (v1.0.0)

@@ -31,7 +31,8 @@ palimpsest/
 │   │           ├── session-{timestamp}-v1.1.0.jsonl
 │   │           └── generated-prompts/          # Prompts created by this meta-prompt
 │   │               ├── regular-{id}-{timestamp}.txt
-│   │               └── spec-{id}-{timestamp}.txt
+│   │               ├── spec-{id}-{timestamp}.txt
+│   │               └── slash-{id}-{timestamp}.md
 │   ├── regular-prompts/
 │   │   └── {prompt-id}/
 │   │       ├── versions/
@@ -51,11 +52,22 @@ palimpsest/
 │   │       │   │   └── authoring-conversation.jsonl
 │   │       │   └── v1.1.0/
 │   │       └── sessions/
+│   ├── slash-commands/
+│   │   └── {command-id}/
+│   │       ├── versions/
+│   │       │   ├── v1.0.0/
+│   │       │   │   ├── command.md             # Markdown with frontmatter
+│   │       │   │   ├── metadata.toml
+│   │       │   │   └── authoring-conversation.jsonl
+│   │       │   └── v1.1.0/
+│   │       └── sessions/
+│   │           └── session-{timestamp}-v1.0.0.jsonl
 │   └── {other-prompt-types}/
 ├── templates/
 │   ├── meta-prompt-template.txt
 │   ├── regular-prompt-template.txt
 │   ├── dev-spec-template.txt
+│   ├── slash-command-template.md
 │   └── metadata-template.toml
 └── index/
     ├── prompts.json                   # All prompts with type and provenance
@@ -78,6 +90,12 @@ Main storage for all prompt types, organized by type then by prompt ID.
 - All sessions using this prompt
 - Session filenames include version suffix
 - Contains actual conversations with users/systems
+
+### `/prompts/slash-commands/{command-id}/`
+- Interactive commands for Claude Code
+- Markdown format with frontmatter metadata
+- Support namespacing and arguments
+- Quick access for development workflows
 
 ### `/prompts/meta-prompts/{id}/sessions/generated-prompts/`
 - Artifacts created during meta-prompt sessions

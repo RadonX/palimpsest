@@ -25,11 +25,12 @@ Palimpsest uses four primary file formats:
 ### File Extensions
 - `.toml` for all TOML files
 
-## TXT Files
+## TXT and Markdown Files
 
 ### Purpose
 - Prompt content (`prompt.txt`)
 - Specification content (`spec.txt`)
+- Slash command content (`command.md`)
 - Template content
 - Any plain text artifacts
 
@@ -41,7 +42,7 @@ Palimpsest uses four primary file formats:
 
 ### File Extensions
 - `.txt` for prompt/spec content
-- `.md` for documentation (docs/ only)
+- `.md` for slash commands and documentation
 
 ## JSONL Files
 
@@ -92,18 +93,45 @@ Palimpsest uses four primary file formats:
 ### File Extensions
 - `.json` for all JSON files
 
+## Markdown Files (Slash Commands)
+
+### Purpose
+- Slash command definitions (`command.md`)
+- Support YAML frontmatter for metadata
+- Interactive Claude Code commands
+- Quick development workflows
+
+### Format
+```markdown
+---
+tools_allowed: [read, write]
+extended_thinking: false
+---
+
+# Command content here
+```
+
+### Advantages
+- Frontmatter for command configuration
+- Rich markdown formatting
+- Compatible with Claude Code
+- Human-readable and editable
+
+### File Extensions
+- `.md` for slash command files
+
 ## Character Encoding
 
 All files use **UTF-8** encoding to support international characters and emojis in prompts and conversations.
 
 ## Line Endings
 
-- **TOML/TXT/JSON**: Platform native line endings
+- **TOML/TXT/Markdown/JSON**: Platform native line endings
 - **JSONL**: LF (`\n`) only for cross-platform consistency
 
 ## File Size Considerations
 
-- **TOML/TXT**: No practical limits
+- **TOML/TXT/Markdown**: No practical limits
 - **JSONL**: Designed for large files, process streaming
 - **JSON**: Keep index files reasonable (<10MB recommended)
 
@@ -113,6 +141,11 @@ All files use **UTF-8** encoding to support international characters and emojis 
 - Must parse without errors
 - Required fields per schema
 - Valid semantic versions
+
+### Markdown Files
+- Valid YAML frontmatter (if present)
+- Markdown syntax compliance
+- Required frontmatter fields for slash commands
 
 ### JSONL Files
 - Each line must be valid JSON
