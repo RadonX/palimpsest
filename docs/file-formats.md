@@ -97,25 +97,19 @@ Palimpsest uses four primary file formats:
 
 ### Purpose
 - Slash command definitions (`command.md`)
-- Support YAML frontmatter for metadata
-- Interactive Claude Code commands
-- Quick development workflows
+- Support YAML frontmatter for Claude Code metadata
+- Interactive development workflows
 
 ### Format
-```markdown
----
-tools_allowed: [read, write]
-extended_thinking: false
----
-
-# Command content here
-```
+- YAML frontmatter with command configuration
+- Markdown content with command logic
+- Support for `$ARGUMENTS` parameter substitution
+- See `templates/slash-command-template.md` for structure
 
 ### Advantages
-- Frontmatter for command configuration
-- Rich markdown formatting
-- Compatible with Claude Code
-- Human-readable and editable
+- Claude Code compatible frontmatter
+- Rich markdown formatting support
+- Human-readable and version controllable
 
 ### File Extensions
 - `.md` for slash command files

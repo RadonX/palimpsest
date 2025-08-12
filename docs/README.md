@@ -10,6 +10,7 @@ This directory contains the project documentation for the Palimpsest prompt mana
 - **[metadata-schemas.md](metadata-schemas.md)** - TOML and JSON schema definitions
 - **[usage-guide.md](usage-guide.md)** - How to use the system
 - **[provenance-tracking.md](provenance-tracking.md)** - How generation tracking works
+- **[slash-command-best-practices.md](slash-command-best-practices.md)** - Best practices for Claude Code slash commands
 
 ## Quick Reference
 

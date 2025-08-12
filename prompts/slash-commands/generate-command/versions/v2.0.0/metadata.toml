@@ -1,34 +1,46 @@
 [command]
 id = "generate-command"
 type = "slash-command"
+name = "generate-command"
 title = "Generate Slash Command with Version Management"
+description = "Generate a new slash command with version management support"
 version = "v2.0.0"
-created = "2025-08-12T12:00:00Z"
-updated = "2025-08-12T12:00:00Z"
+created = "2025-07-16T00:00:00Z"
+updated = "2025-07-16T00:00:00Z"
 
 [author]
-name = "Claude"
-email = "noreply@anthropic.com"
+name = "markshawn2020"
 
 [usage]
 arguments = ["command-name", "description", "scope", "version", "additional-requirements"]
-file_patterns = [".claude/commands/**/*.md", "~/.claude/commands/**/*.md", "versions/**/*.md"]
-requires_selection = false
+argument_hint = "<command-name> \"<description>\" [project|user] [version] [additional-requirements]"
+scope = "user"
 
 [behavior]
-tools_allowed = ["write", "read", "bash", "ls", "glob", "grep"]
-extended_thinking = true
-bash_execution = true
+allowed_tools = ["Write(*)", "Read(*)", "Bash(mkdir:*)", "Bash(ls:*)", "Bash(echo:*)", "Bash(cp:*)", "Bash(date:*)"]
+model = "sonnet"
 
 [source]
-type = "external"
-url = "https://github.com/MarkShawn2020/.claude/blob/main/commands/generate-command.md"
+type = "original"
 original_author = "markshawn2020"
 
+[changelog]
+[[changelog.entries]]
+version = "v2.0.0"
+date = "2025-08-12"
+changes = [
+    "Enhanced version management features",
+    "Added semantic versioning support", 
+    "Automatic backup creation",
+    "Version history tracking in YAML frontmatter",
+    "Changelog generation for updates"
+]
+
 [tags]
-categories = ["command-generation", "development", "automation", "version-management"]
-domains = ["tooling", "productivity", "claude-code"]
-contexts = ["command-creation", "version-control", "backup-management"]
+categories = ["generation", "development", "automation"]
+domains = ["claude-code", "command-management"]
+contexts = ["development", "workflow"]
 
 [lineage]
+parent_version = "v1.0.0"
 deprecated = false

@@ -108,7 +108,9 @@ domains = ["string"]             # Optional: Technical domains
 [command]
 id = "string"                    # Required: Unique command identifier
 type = "slash-command"           # Required: Always "slash-command"
+name = "string"                  # Required: Command name (without /)
 title = "string"                 # Required: Human-readable title
+description = "string"           # Required: Purpose description
 version = "string"               # Required: Semantic version
 created = "datetime"             # Required: Creation timestamp
 updated = "datetime"             # Required: Last update timestamp
@@ -118,14 +120,19 @@ name = "string"                  # Required: Author name (who added to palimpses
 email = "string"                 # Optional: Author email
 
 [usage]
+namespace = "string"             # Optional: Command namespace (e.g., "frontend")
 arguments = ["string"]           # Optional: Expected argument names
+argument_hint = "string"         # Optional: Hint text for arguments (shown in Claude Code)
+file_patterns = ["string"]       # Optional: File glob patterns for context
 requires_selection = false       # Optional: Requires text selection
+scope = "string"                 # Optional: "project" or "user" (for Claude Code deployment)
 
 [behavior]
-tools_allowed = ["string"]       # Optional: Allowed tools (read, write, bash, etc.)
+allowed_tools = ["string"]       # Optional: Claude Code allowed-tools format
+model = "string"                 # Optional: "opus", "sonnet", "haiku"
 extended_thinking = false        # Optional: Enable extended thinking mode
-bash_execution = false           # Optional: Allow bash command execution
 
+# Use either [provenance] OR [source], not both
 [provenance]
 source_type = "string"           # Optional: "meta-prompt" if generated
 source_id = "string"             # Optional: Source meta-prompt ID
@@ -137,10 +144,17 @@ manually_edited = false          # Optional: Has been manually modified
 [source]
 type = "string"                  # Optional: "external", "adapted", "original"
 url = "string"                   # Optional: Source URL if external
-original_author = "string"       # Optional: Original author if external
+original_author = "string"       # Optional: Original author if external/adapted
 license = "string"               # Optional: License information
 adapted = false                  # Optional: Whether adapted from external source
 adaptation_notes = "string"      # Optional: Notes about adaptations made
+
+[changelog]
+# Version history tracking
+[[changelog.entries]]
+version = "string"               # Version number
+date = "datetime"                # Release date
+changes = ["string"]             # List of changes made
 
 [tags]
 categories = ["string"]          # Required: Command categories

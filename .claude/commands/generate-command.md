@@ -1,0 +1,1 @@
+../../prompts/slash-commands/generate-command/versions/latest.md

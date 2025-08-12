@@ -58,19 +58,8 @@ mkdir -p prompts/slash-commands/review-code/versions/v1.0.0
 cp templates/slash-command-template.md \
    prompts/slash-commands/review-code/versions/v1.0.0/command.md
 
-# 3. Edit command.md with frontmatter:
----
-tools_allowed: [read, write]
-extended_thinking: true
-description: "Review code for best practices and issues"
----
-
-# Code Review Command
-Review the provided code for:
-- Best practices
-- Potential bugs
-- Performance issues
-- Security concerns
+# 3. Edit command.md (see templates/slash-command-template.md for structure)
+# Customize frontmatter and content for your specific command needs
 
 # 4. Create metadata
 cp templates/metadata-template.toml \
