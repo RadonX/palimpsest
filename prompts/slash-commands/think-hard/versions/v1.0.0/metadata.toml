@@ -1,0 +1,40 @@
+[command]
+id = "think-hard"
+type = "slash-command"
+name = "think-hard"
+title = "Enhanced Thinking Mode"
+description = "Trigger enhanced thinking mode for complex problem solving"
+version = "v1.0.0"
+created = "2025-07-14T00:00:00Z"
+updated = "2025-07-14T00:00:00Z"
+
+[author]
+name = "markshawn2020"
+
+[usage]
+arguments = ["problem-or-question"]
+argument_hint = "[complex problem or question to analyze]"
+scope = "user"
+
+[behavior]
+allowed_tools = ["Read", "Grep", "Glob", "LS", "Task", "WebFetch", "WebSearch"]
+model = "sonnet"
+
+[source]
+type = "external"
+url = "https://github.com/MarkShawn2020/.claude/blob/main/commands/think-hard.md"
+original_author = "markshawn2020"
+
+[changelog]
+[[changelog.entries]]
+version = "v1.0.0"
+date = "2025-07-14"
+changes = ["Initial version - enhanced thinking mode activation"]
+
+[tags]
+categories = ["analysis", "thinking", "problem-solving"]
+domains = ["cognitive", "reasoning", "complex-analysis"]
+contexts = ["analysis", "planning", "decision-making", "problem-solving"]
+
+[lineage]
+deprecated = false

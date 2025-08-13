@@ -1,0 +1,40 @@
+[command]
+id = "think-ultra"
+type = "slash-command"
+name = "think-ultra"
+title = "Maximum Thinking Mode"
+description = "Trigger maximum thinking mode for the most complex problems"
+version = "v1.0.0"
+created = "2025-07-14T00:00:00Z"
+updated = "2025-07-14T00:00:00Z"
+
+[author]
+name = "markshawn2020"
+
+[usage]
+arguments = ["problem-or-question"]
+argument_hint = "[most complex problem or question requiring maximum analysis]"
+scope = "user"
+
+[behavior]
+allowed_tools = ["Read", "Grep", "Glob", "LS", "Task", "WebFetch", "WebSearch"]
+model = "opus"
+
+[source]
+type = "external"
+url = "https://github.com/MarkShawn2020/.claude/blob/main/commands/think-ultra.md"
+original_author = "markshawn2020"
+
+[changelog]
+[[changelog.entries]]
+version = "v1.0.0"
+date = "2025-07-14"
+changes = ["Initial version - maximum thinking mode activation"]
+
+[tags]
+categories = ["analysis", "thinking", "problem-solving"]
+domains = ["cognitive", "reasoning", "complex-analysis", "maximum-analysis"]
+contexts = ["analysis", "planning", "decision-making", "ultra-complex-problem-solving"]
+
+[lineage]
+deprecated = false

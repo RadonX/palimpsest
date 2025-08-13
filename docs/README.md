@@ -11,6 +11,7 @@ This directory contains the project documentation for the Palimpsest prompt mana
 - **[usage-guide.md](usage-guide.md)** - How to use the system
 - **[provenance-tracking.md](provenance-tracking.md)** - How generation tracking works
 - **[slash-command-best-practices.md](slash-command-best-practices.md)** - Best practices for Claude Code slash commands
+- **[slash-command-workflow.md](slash-command-workflow.md)** - Complete workflow for adding slash commands with symbolic links
 
 ## Quick Reference
 

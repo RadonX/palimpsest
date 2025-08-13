@@ -35,61 +35,14 @@ cp templates/metadata-template.toml prompts/meta-prompts/my-first-generator/vers
 
 ### Creating a New Slash Command
 
-#### Option 1: Generated from Meta-Prompt
-```bash
-# Generated slash commands appear as:
-# prompts/meta-prompts/{id}/sessions/generated-prompts/slash-{artifact}.md
+**For complete slash command workflow including symbolic links, see [slash-command-workflow.md](slash-command-workflow.md).**
 
-# Copy to slash command location:
-mkdir -p prompts/slash-commands/new-command/versions/v1.0.0
-cp prompts/meta-prompts/{id}/sessions/generated-prompts/slash-{artifact}.md \
-   prompts/slash-commands/new-command/versions/v1.0.0/command.md
-
-# Create metadata with provenance
-# Edit metadata.toml to include [provenance] section and [behavior] settings
-```
-
-#### Option 2: Manual Creation
-```bash
-# 1. Create structure
-mkdir -p prompts/slash-commands/review-code/versions/v1.0.0
-
-# 2. Create command from template
-cp templates/slash-command-template.md \
-   prompts/slash-commands/review-code/versions/v1.0.0/command.md
-
-# 3. Edit command.md (see templates/slash-command-template.md for structure)
-# Customize frontmatter and content for your specific command needs
-
-# 4. Create metadata
-cp templates/metadata-template.toml \
-   prompts/slash-commands/review-code/versions/v1.0.0/metadata.toml
-# Edit to include [command] section (omit empty fields like namespace, license)
-
-# 5. Create authoring conversation (only if authored in palimpsest)
-# Skip this step for external/adapted commands
-```
-
-#### Option 3: External/Adapted Commands
-```bash
-# 1. Create structure for external command
-mkdir -p prompts/slash-commands/external-command/versions/v1.0.0
-
-# 2. Copy/adapt external command content
-# Create command.md with adapted content
-
-# 3. Create metadata with source attribution
-cp templates/metadata-template.toml \
-   prompts/slash-commands/external-command/versions/v1.0.0/metadata.toml
-
-# Edit metadata.toml to include [source] section:
-[source]
-type = "external"
-url = "https://github.com/user/repo/path/to/command.md"
-original_author = "original-author"
-
-# 4. Do NOT create authoring-conversation.jsonl for external sources
-```
+Basic process:
+1. Create directory structure (`versions/` and `sessions/`)
+2. Copy/create command.md file 
+3. Create metadata.toml
+4. Create symbolic links for version management and Claude Code integration
+5. Create authoring conversation (if applicable)
 
 ### Creating a New Regular Prompt
 
@@ -289,6 +242,10 @@ mkdir -p "prompts/$PROMPT_TYPE/$PROMPT_ID/sessions"
 if [[ "$PROMPT_TYPE" == "slash-commands" ]]; then
     cp "templates/slash-command-template.md" \
        "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION/command.md"
+    
+    # Create symbolic links for slash commands
+    ln -s "$VERSION/command.md" "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/latest.md"
+    ln -s "../../prompts/$PROMPT_TYPE/$PROMPT_ID/versions/latest.md" ".claude/commands/$PROMPT_ID.md"
 else
     cp "templates/${PROMPT_TYPE%-*}-template.txt" \
        "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION/prompt.txt"

@@ -1,0 +1,40 @@
+[command]
+id = "think-harder"
+type = "slash-command"
+name = "think-harder"
+title = "Intensive Thinking Mode"
+description = "Trigger intensive thinking mode for highly complex analysis"
+version = "v1.0.0"
+created = "2025-07-14T00:00:00Z"
+updated = "2025-07-14T00:00:00Z"
+
+[author]
+name = "markshawn2020"
+
+[usage]
+arguments = ["problem-or-question"]
+argument_hint = "[highly complex problem or question to analyze]"
+scope = "user"
+
+[behavior]
+allowed_tools = ["Read", "Grep", "Glob", "LS", "Task", "WebFetch", "WebSearch"]
+model = "opus"
+
+[source]
+type = "external"
+url = "https://github.com/MarkShawn2020/.claude/blob/main/commands/think-harder.md"
+original_author = "markshawn2020"
+
+[changelog]
+[[changelog.entries]]
+version = "v1.0.0"
+date = "2025-07-14"
+changes = ["Initial version - intensive thinking mode activation"]
+
+[tags]
+categories = ["analysis", "thinking", "problem-solving"]
+domains = ["cognitive", "reasoning", "complex-analysis", "intensive-analysis"]
+contexts = ["analysis", "planning", "decision-making", "complex-problem-solving"]
+
+[lineage]
+deprecated = false
