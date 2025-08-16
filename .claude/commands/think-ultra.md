@@ -1,0 +1,1 @@
+../../prompts/slash-commands/think-ultra/versions/latest.md

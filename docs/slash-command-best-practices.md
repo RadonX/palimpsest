@@ -1,15 +1,9 @@
 # Slash Command Best Practices
 
-## Overview
-
-Based on research from Claude Code documentation and community best practices, this guide provides recommendations for creating effective slash commands within the Palimpsest system.
-
 ## Frontmatter Standards
 
-### Frontmatter Structure
-See `templates/slash-command-template.md` for the complete frontmatter structure. Key fields include:
-
-- **allowed-tools**: Tools Claude can use (Read, Write, Edit, Bash, etc.)
+### Required Fields
+- **allowed-tools**: `["Read", "Write", "Edit", "Bash"]`
 - **description**: Brief command description
 - **argument-hint**: User guidance for arguments
 - **model**: Claude model to use (sonnet, opus, haiku)
@@ -25,14 +19,13 @@ See `templates/slash-command-template.md` for the complete frontmatter structure
 - **Directory Operations**: `Bash(mkdir:*)`, `Bash(ls:*)`
 
 ### Tool Specificity
-- Use specific patterns when possible: `Bash(git add:*)` instead of `Bash(*)`
+- Use specific patterns: `Bash(git add:*)` instead of `Bash(*)`
 - Only include tools actually needed by the command
 - Consider security implications of broad tool access
 
 ## Argument Handling
 
 ### Using $ARGUMENTS
-Reference the template for $ARGUMENTS usage patterns. Key points:
 - Use `$ARGUMENTS` to access all provided arguments
 - Parse arguments within your command logic
 - Validate inputs appropriately
@@ -45,15 +38,13 @@ Reference the template for $ARGUMENTS usage patterns. Key points:
 ## Command Structure
 
 ### Naming Conventions
-- Use kebab-case for command names: `review-code`, `create-component`
+- Use kebab-case: `review-code`, `create-component`
 - Keep names short but descriptive
 - Consider namespace organization: `frontend/component`, `git/commit`
 
 ### Content Organization
-Follow the structure in `templates/slash-command-template.md`:
-- Clear command title
-- Brief description
-- Argument usage explanation
+- Clear command title and description
+- Brief argument usage explanation
 - Process steps
 - Usage examples
 
@@ -98,19 +89,13 @@ backend/
 
 ## Version Management
 
-### Changelog Tracking
-Document changes in metadata.toml:
-```toml
-[[changelog.entries]]
-version = "2.0.0"
-date = "2025-08-12"
-changes = ["Added argument validation", "Improved error handling"]
-```
+For complete versioning guidelines, see [Asset Versioning Guide](asset-versioning-guide.md).
 
-### Semantic Versioning
-- **Major**: Breaking changes to command interface
-- **Minor**: New features, backward compatible
-- **Patch**: Bug fixes, improvements
+### Quick Reference
+- Never modify existing versions - always create new version directories
+- Use semantic versioning: Major.Minor.Patch (v1.1.0)
+- Single metadata.toml at command root (not in each version)
+- Document all changes in changelog entries
 
 ## Community Patterns
 

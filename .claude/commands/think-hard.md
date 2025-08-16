@@ -1,0 +1,1 @@
+../../prompts/slash-commands/think-hard/versions/latest.md

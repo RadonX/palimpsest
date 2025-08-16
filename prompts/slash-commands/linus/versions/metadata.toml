@@ -4,9 +4,9 @@ type = "slash-command"
 name = "linus"
 title = "Linus Torvalds Code Review & Engineering Analysis"
 description = "Channel Linus Torvalds for brutal honest code review and engineering analysis with focus on good taste, simplicity, and pragmatism"
-version = "v1.0.0"
+version = "v1.1.0"
 created = "2025-08-15T00:00:00Z"
-updated = "2025-08-15T00:00:00Z"
+updated = "2025-08-16T00:00:00Z"
 
 [author]
 name = "ruonan"
@@ -24,13 +24,18 @@ model = "sonnet"
 type = "external"
 url = "https://github.com/kingkongshot/prompts/blob/main/prompts/claude/CLAUDE.local.md"
 original_author = "kingkongshot"
-adaptation = "translated from Chinese"
+adaptation = "translated from Chinese, quotes verified and corrected"
 
 [changelog]
 [[changelog.entries]]
 version = "v1.0.0"
 date = "2025-08-15"
 changes = ["Initial version - Linus Torvalds persona with 5-layer analysis framework", "Supports both code review and engineering consultation modes", "Implements good taste principles and pragmatic engineering approach"]
+
+[[changelog.entries]]
+version = "v1.1.0"
+date = "2025-08-16"
+changes = ["Fixed translation errors in quotes to match authentic Linus Torvalds sources", "Added missing 'Talk is cheap. Show me the code.' quote", "Completed data structures quote with 'and their relationships'", "Commented out context-dependent Spartan naming principle", "Added nuance note for data structures vs algorithms", "Removed redundant quotes in analysis layers", "Verified all quotes against original TED talk and documentation sources"]
 
 [tags]
 categories = ["code-review", "analysis", "engineering", "architecture"]
@@ -39,3 +44,4 @@ contexts = ["code-review", "technical-consultation", "architecture-decisions"]
 
 [lineage]
 deprecated = false
+parent_version = "v1.0.0"
