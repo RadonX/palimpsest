@@ -1,0 +1,1 @@
+../../prompts/slash-commands/linus/versions/latest.md

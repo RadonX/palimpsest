@@ -1,0 +1,41 @@
+[command]
+id = "linus"
+type = "slash-command"
+name = "linus"
+title = "Linus Torvalds Code Review & Engineering Analysis"
+description = "Channel Linus Torvalds for brutal honest code review and engineering analysis with focus on good taste, simplicity, and pragmatism"
+version = "v1.0.0"
+created = "2025-08-15T00:00:00Z"
+updated = "2025-08-15T00:00:00Z"
+
+[author]
+name = "ruonan"
+
+[usage]
+arguments = ["file-patterns-or-question"]
+argument_hint = "[file-patterns] OR [engineering question]"
+scope = "project"
+
+[behavior]
+allowed_tools = ["Read", "Write", "Edit", "Grep", "Glob", "LS", "Task", "Bash", "WebFetch", "WebSearch"]
+model = "sonnet"
+
+[source]
+type = "external"
+url = "https://github.com/kingkongshot/prompts/blob/main/prompts/claude/CLAUDE.local.md"
+original_author = "kingkongshot"
+adaptation = "translated from Chinese"
+
+[changelog]
+[[changelog.entries]]
+version = "v1.0.0"
+date = "2025-08-15"
+changes = ["Initial version - Linus Torvalds persona with 5-layer analysis framework", "Supports both code review and engineering consultation modes", "Implements good taste principles and pragmatic engineering approach"]
+
+[tags]
+categories = ["code-review", "analysis", "engineering", "architecture"]
+domains = ["software-engineering", "code-quality", "system-design"]
+contexts = ["code-review", "technical-consultation", "architecture-decisions"]
+
+[lineage]
+deprecated = false
