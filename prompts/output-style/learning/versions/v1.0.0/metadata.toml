@@ -1,0 +1,47 @@
+[output_style]
+id = "learning"
+type = "output-style"
+name = "learning"
+title = "Learning Output Style"
+description = "Collaborative learning mode with educational insights and opportunities for human contribution"
+version = "v1.0.0"
+created = "2025-08-17T00:00:00Z"
+updated = "2025-08-17T00:00:00Z"
+filename = "system_prompt.md"
+
+[author]
+name = "claude-code-official"
+
+[usage]
+scope = "project"
+activation = "/output-style learning"
+
+[behavior]
+maintains_core_capabilities = true
+modifies_system_prompt = true
+focus = "collaborative-learning"
+
+[features]
+insights = true
+task_completion = true
+collaborative = true
+human_contribution_requests = true
+todo_integration = true
+
+[source]
+type = "built-in"
+origin = "claude-code-official"
+
+[changelog]
+[[changelog.entries]]
+version = "v1.0.0"
+date = "2025-08-17"
+changes = ["Initial learning output style with TODO(human) collaboration features"]
+
+[tags]
+categories = ["education", "learning", "collaboration", "software-engineering"]
+domains = ["teaching", "hands-on-learning", "mentorship"]
+contexts = ["development", "code-review", "debugging", "pair-programming"]
+
+[lineage]
+deprecated = false

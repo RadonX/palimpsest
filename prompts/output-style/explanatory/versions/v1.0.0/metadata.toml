@@ -1,0 +1,45 @@
+[output_style]
+id = "explanatory"
+type = "output-style"
+name = "explanatory"
+title = "Explanatory Output Style"
+description = "Provides educational insights while helping with software engineering tasks"
+version = "v1.0.0"
+created = "2025-08-17T00:00:00Z"
+updated = "2025-08-17T00:00:00Z"
+filename = "custom_explanatory"
+
+[author]
+name = "claude-code-official"
+
+[usage]
+scope = "project"
+activation = "/output-style explanatory"
+
+[behavior]
+maintains_core_capabilities = true
+modifies_system_prompt = true
+focus = "educational"
+
+[features]
+insights = true
+task_completion = true
+collaborative = false
+
+[source]
+type = "built-in"
+origin = "claude-code-official"
+
+[changelog]
+[[changelog.entries]]
+version = "v1.0.0"
+date = "2025-08-17"
+changes = ["Initial explanatory output style definition"]
+
+[tags]
+categories = ["education", "learning", "software-engineering"]
+domains = ["teaching", "explanation"]
+contexts = ["development", "code-review", "debugging"]
+
+[lineage]
+deprecated = false
