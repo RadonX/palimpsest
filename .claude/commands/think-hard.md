@@ -1,1 +1,1 @@
-../../prompts/slash-commands/think-hard/versions/latest.md
+../../prompts/slash-commands/think-hard/latest.md

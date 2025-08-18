@@ -2,20 +2,22 @@
 
 ## Rules
 1. **Never modify existing versions** - always create new version directories
-2. **Single metadata.toml** per asset (not per version)
+2. **Metadata.toml per version** - each version has its own metadata file
 3. **Semantic versioning**: v1.0.0 format
+4. **latest.md symlink** - always points to current version in root directory
 
 ## Structure
 ```
 asset-name/
-├── metadata.toml              # Central version management
+├── latest.md                  # Symlink to current version
 ├── sessions/                  # Conversation logs (slash commands only)
 └── versions/
-    ├── latest.md             # Current version
     ├── v1.0.0/
-    │   └── command.md        # or prompt.md
+    │   ├── command.md        # or system_prompt.md for output-styles
+    │   └── metadata.toml     # Version-specific metadata
     └── v1.1.0/
-        └── command.md
+        ├── command.md
+        └── metadata.toml
 ```
 
 ## Create New Version
@@ -23,21 +25,25 @@ asset-name/
 ```bash
 # 1. Create directory (adjust path for asset type)
 mkdir -p prompts/slash-commands/my-command/versions/v1.1.0        # slash commands
-mkdir -p prompts/meta-prompts/my-prompt/versions/v1.1.0           # meta-prompts  
-mkdir -p prompts/regular-prompts/my-prompt/versions/v1.1.0        # regular prompts
+mkdir -p prompts/output-style/my-style/versions/v1.1.0            # output styles
 
 # 2. Copy previous version
 cp versions/v1.0.0/command.md versions/v1.1.0/command.md          # slash commands
-cp versions/v1.0.0/prompt.md versions/v1.1.0/prompt.md            # prompts
+cp versions/v1.0.0/system_prompt.md versions/v1.1.0/system_prompt.md  # output styles
+cp versions/v1.0.0/metadata.toml versions/v1.1.0/metadata.toml    # copy metadata
 
 # 3. Edit new version - make your changes
 
 # 4. Update metadata.toml - version field and changelog entry
+
+# 5. Update latest.md symlink
+rm latest.md && ln -sf versions/v1.1.0/command.md latest.md       # slash commands
+rm latest.md && ln -sf versions/v1.1.0/system_prompt.md latest.md # output styles
 ```
 
 ### Metadata Update
 ```toml
-[command]           # or [prompt] for prompts
+[command]           # or [output_style] for output styles
 version = "v1.1.0"
 updated = "2025-08-16T12:00:00Z"
 
@@ -58,4 +64,22 @@ changes = ["Fixed quotes", "Added missing content", "Removed redundancy"]
 ```bash
 # Restore from git
 git checkout HEAD -- prompts/slash-commands/command-name/versions/v1.0.0/command.md
+
+# Fix broken latest.md symlink
+cd prompts/slash-commands/command-name
+rm latest.md && ln -sf versions/v1.0.0/command.md latest.md
 ```
+
+## Asset Types
+
+### Slash Commands
+- **Location**: `prompts/slash-commands/`
+- **File**: `command.md` 
+- **Metadata**: `[command]` section
+- **Usage**: Executable commands via `/command-name`
+
+### Output Styles  
+- **Location**: `prompts/output-style/`
+- **File**: `system_prompt.md`
+- **Metadata**: `[output_style]` section
+- **Usage**: System prompt modifications via `/output-style style-name`

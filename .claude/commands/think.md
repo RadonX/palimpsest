@@ -1,1 +1,1 @@
-../../prompts/slash-commands/think/versions/latest.md
+../../prompts/slash-commands/think/latest.md
