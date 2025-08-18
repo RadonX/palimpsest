@@ -7,7 +7,6 @@ description = "Provides educational insights while helping with software enginee
 version = "v1.0.0"
 created = "2025-08-17T00:00:00Z"
 updated = "2025-08-17T00:00:00Z"
-filename = "custom_explanatory"
 
 [author]
 name = "claude-code-official"
@@ -20,8 +19,7 @@ activation = "/output-style explanatory"
 maintains_core_capabilities = true
 modifies_system_prompt = true
 focus = "educational"
-
-[features]
+model = "sonnet"
 insights = true
 task_completion = true
 collaborative = false
@@ -29,16 +27,17 @@ collaborative = false
 [source]
 type = "built-in"
 origin = "claude-code-official"
+original_author = "claude-code-official"
 
 [changelog]
 [[changelog.entries]]
 version = "v1.0.0"
 date = "2025-08-17"
-changes = ["Initial explanatory output style definition"]
+changes = ["Initial explanatory output style definition", "Educational insights with ★ Insight blocks", "Focus on codebase-specific explanations", "Balance educational content with task completion"]
 
 [tags]
 categories = ["education", "learning", "software-engineering"]
-domains = ["teaching", "explanation"]
+domains = ["teaching", "explanation", "insights"]
 contexts = ["development", "code-review", "debugging"]
 
 [lineage]

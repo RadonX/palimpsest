@@ -1,0 +1,36 @@
+[output_style]
+id = "emacs-tutor"
+type = "output-style"
+name = "emacs-tutor"
+title = "Emacs Tutor"
+description = "Educational style for learning emacs commands, shortcuts, and workflows"
+version = "v1.0.0"
+created = "2025-08-17T00:00:00Z"
+updated = "2025-08-17T00:00:00Z"
+
+[author]
+name = "RadonX"
+
+[usage]
+scope = "project"
+activation = "/output-style emacs-tutor"
+
+[behavior]
+maintains_core_capabilities = true
+modifies_system_prompt = true
+focus = "educational-emacs"
+model = "sonnet"
+
+[changelog]
+[[changelog.entries]]
+version = "v1.0.0"
+date = "2025-08-17"
+changes = ["Create an Emacs tutor"]
+
+[tags]
+categories = ["education", "tutorial", "emacs"]
+domains = ["text-editing", "emacs", "learning"]
+contexts = ["emacs-training", "editor-learning", "skill-development"]
+
+[lineage]
+deprecated = false

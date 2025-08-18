@@ -1,0 +1,41 @@
+[output_style]
+id = "chat-agent"
+type = "output-style"
+name = "chat-agent"
+title = "Chat Agent"
+description = "Optimized for conversational interactions with helpful, engaging responses"
+version = "v1.0.0"
+created = "2025-08-17T00:00:00Z"
+updated = "2025-08-17T00:00:00Z"
+
+[author]
+name = "RadonX"
+
+[usage]
+scope = "project"
+activation = "/output-style chat-agent"
+
+[behavior]
+maintains_core_capabilities = true
+modifies_system_prompt = true
+focus = "conversational"
+model = "sonnet"
+
+[source]
+type = "user-created"
+origin = "~/.claude/output-styles/chat-agent.md"
+original_author = "RadonX"
+
+[changelog]
+[[changelog.entries]]
+version = "v1.0.0"
+date = "2025-08-17"
+changes = ["Create a chat agent"]
+
+[tags]
+categories = ["conversation", "help", "general-purpose"]
+domains = ["chat", "assistance", "interaction"]
+contexts = ["general", "help", "conversation"]
+
+[lineage]
+deprecated = false

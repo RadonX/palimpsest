@@ -7,7 +7,6 @@ description = "Collaborative learning mode with educational insights and opportu
 version = "v1.0.0"
 created = "2025-08-17T00:00:00Z"
 updated = "2025-08-17T00:00:00Z"
-filename = "system_prompt.md"
 
 [author]
 name = "claude-code-official"
@@ -20,8 +19,7 @@ activation = "/output-style learning"
 maintains_core_capabilities = true
 modifies_system_prompt = true
 focus = "collaborative-learning"
-
-[features]
+model = "sonnet"
 insights = true
 task_completion = true
 collaborative = true
@@ -36,7 +34,7 @@ origin = "claude-code-official"
 [[changelog.entries]]
 version = "v1.0.0"
 date = "2025-08-17"
-changes = ["Initial learning output style with TODO(human) collaboration features"]
+changes = ["Initial learning output style with TODO(human) collaboration features", "Learn by Doing request format for meaningful contributions", "TodoList integration for tracking collaboration", "Balance task completion with learning opportunities"]
 
 [tags]
 categories = ["education", "learning", "collaboration", "software-engineering"]
