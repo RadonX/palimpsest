@@ -1,256 +1,60 @@
 # Usage Guide
 
-## Getting Started
+This repository contains prompts and commands for Claude Code. Here's how to use them.
 
-### 1. Initialize Repository
-```bash
-# Create basic structure
-mkdir -p prompts/{meta-prompts,regular-prompts,dev-specs}
-mkdir -p {templates,index,docs}
+## Using Slash Commands
 
-# Copy configuration template
-cp templates/metadata-template.toml palimpsest.toml
-# Edit palimpsest.toml with your settings
-```
-
-### 2. Create Your First Meta-Prompt
+### Installation
+Copy the command content from `prompts/slash-commands/{command-name}/latest.md` to your Claude Code commands directory:
 
 ```bash
-# Create directory structure
-mkdir -p prompts/meta-prompts/my-first-generator/versions/v1.0.0
-mkdir -p prompts/meta-prompts/my-first-generator/sessions
+# Copy to user-level commands
+cp prompts/slash-commands/think/latest.md ~/.claude/commands/think.md
 
-# Create prompt content
-echo "Your meta-prompt content here..." > prompts/meta-prompts/my-first-generator/versions/v1.0.0/prompt.txt
-
-# Create metadata from template
-cp templates/metadata-template.toml prompts/meta-prompts/my-first-generator/versions/v1.0.0/metadata.toml
-# Edit metadata.toml with your details
-
-# Create authoring conversation
-# (Use your conversation log or manually create JSONL)
+# Copy to project-level commands  
+cp prompts/slash-commands/linus/latest.md .claude/commands/linus.md
 ```
 
-## Daily Workflows
-
-### Creating a New Slash Command
-
-**For complete slash command workflow including symbolic links, see [slash-command-workflow.md](slash-command-workflow.md).**
-
-Basic process:
-1. Create directory structure (`versions/` and `sessions/`)
-2. Copy/create command.md file 
-3. Create metadata.toml
-4. Create symbolic links for version management and Claude Code integration
-5. Create authoring conversation (if applicable)
-
-### Creating a New Regular Prompt
-
-#### Option 1: Generated from Meta-Prompt
+### Usage in Claude Code
 ```bash
-# 1. Run session with meta-prompt
-# Your conversation gets saved as:
-# prompts/meta-prompts/{id}/sessions/session-{timestamp}-{version}.jsonl
-
-# 2. Generated artifacts appear in:
-# prompts/meta-prompts/{id}/sessions/generated-prompts/
-
-# 3. Copy to regular prompt location:
-mkdir -p prompts/regular-prompts/new-prompt/versions/v1.0.0
-cp prompts/meta-prompts/{id}/sessions/generated-prompts/regular-{artifact}.txt \
-   prompts/regular-prompts/new-prompt/versions/v1.0.0/prompt.txt
-
-# 4. Create metadata with provenance:
-# Edit metadata.toml to include [provenance] section
+# Use the command
+/think "How should I approach this complex refactoring?"
+/linus "Review this code for performance issues"
 ```
 
-#### Option 2: Manual Creation
-```bash
-# 1. Create structure
-mkdir -p prompts/regular-prompts/manual-prompt/versions/v1.0.0
+## Using Output Styles
 
-# 2. Write prompt
-echo "Your prompt content..." > prompts/regular-prompts/manual-prompt/versions/v1.0.0/prompt.txt
-
-# 3. Create metadata (no provenance section needed)
-cp templates/metadata-template.toml prompts/regular-prompts/manual-prompt/versions/v1.0.0/metadata.toml
-
-# 4. Document authoring process
-# Save your creation conversation as authoring-conversation.jsonl
-```
-
-### Running Sessions
+### Installation
+Copy the system prompt from `prompts/output-style/{style-name}/latest.md`:
 
 ```bash
-# Sessions automatically get saved as JSONL
-# Filename format: session-{YYYYMMDD-HHMMSS}-{version}.jsonl
+# Copy to user-level styles
+cp prompts/output-style/explanatory/latest.md ~/.claude/output-styles/explanatory.md
 
-# Example session file location:
-prompts/regular-prompts/code-reviewer/sessions/session-20250812-143000-v1.0.0.jsonl
+# Copy to project-level styles
+cp prompts/output-style/learning/latest.md .claude/output-styles/learning.md
 ```
 
-### Versioning Prompts
-
+### Activation in Claude Code
 ```bash
-# Create new version
-mkdir prompts/regular-prompts/my-prompt/versions/v1.1.0
-
-# Copy and modify content
-cp prompts/regular-prompts/my-prompt/versions/v1.0.0/prompt.txt \
-   prompts/regular-prompts/my-prompt/versions/v1.1.0/prompt.txt
-# Edit the new prompt.txt
-
-# Update metadata
-cp prompts/regular-prompts/my-prompt/versions/v1.0.0/metadata.toml \
-   prompts/regular-prompts/my-prompt/versions/v1.1.0/metadata.toml
-# Update version, timestamps, and lineage.parent_version
-
-# Document changes
-# Save conversation that led to new version as authoring-conversation.jsonl
+# Switch to a style
+/output-style explanatory
+/output-style learning
 ```
 
-## Advanced Usage
+## Browsing Assets
 
-### Finding Prompts
+### By Category
+- **Analysis & Thinking**: `/think`, `/think-hard`, `/think-harder`, `/think-ultra`
+- **Code Review**: `/linus` (Torvalds-style code review)
+- **Educational**: `explanatory` and `learning` output styles
 
-#### By Tag
-```bash
-# Find all development-related prompts
-grep -r "categories.*development" prompts/*/*/versions/*/metadata.toml
+### Metadata Information
+Each asset includes metadata with:
+- **Description**: What the asset does
+- **Usage**: How to use it effectively  
+- **Tags**: Categories and contexts
+- **Author**: Who created it
+- **Version**: Current version and changelog
 
-# Find React-specific prompts  
-grep -r "react" prompts/*/*/versions/*/metadata.toml
-```
-
-#### By Source
-```bash
-# Find all prompts generated by a meta-prompt
-grep -r "source_id = \"my-meta-prompt\"" prompts/*/*/versions/*/metadata.toml
-```
-
-#### By Type
-```bash
-# List all meta-prompts
-ls prompts/meta-prompts/
-
-# List all dev specs
-ls prompts/dev-specs/
-
-# List all slash commands
-ls prompts/slash-commands/
-```
-
-### Performance Analysis
-
-#### Meta-Prompt Effectiveness
-```bash
-# Count generations per meta-prompt
-find prompts -name "metadata.toml" -exec grep -l "source_id" {} \; | \
-  xargs grep "source_id" | cut -d'"' -f2 | sort | uniq -c
-
-# Find most-used prompts
-find prompts -name "session-*.jsonl" | \
-  rev | cut -d'/' -f2 | rev | sort | uniq -c | sort -nr
-```
-
-#### Session Analysis
-```bash
-# Count messages per session
-for session in prompts/*/*/sessions/*.jsonl; do
-  echo "$session: $(wc -l < "$session") messages"
-done
-
-# Find long-running sessions
-find prompts -name "*.jsonl" -exec wc -l {} \; | sort -nr | head -10
-```
-
-### Maintenance Tasks
-
-#### Update Indices
-```bash
-# Rebuild prompts.json
-find prompts -name "metadata.toml" | while read file; do
-  # Extract metadata and add to index
-  # (This would be automated by tooling)
-done
-
-# Rebuild provenance.json
-# Scan all metadata.toml files for provenance sections
-# Build relationship graph
-```
-
-#### Cleanup
-```bash
-# Find orphaned generated artifacts
-find prompts/*/sessions/generated-prompts/ -name "*.txt" | while read artifact; do
-  # Check if corresponding prompt exists in target directory
-done
-
-# Find broken provenance links
-grep -r "source_id" prompts/*/*/versions/*/metadata.toml | while read ref; do
-  # Verify source exists
-done
-```
-
-## File Organization Tips
-
-### Naming Conventions
-- **Prompt/Command IDs**: Use kebab-case (`react-code-reviewer`, `review-code`)
-- **Versions**: Always use semantic versioning (`v1.0.0`)
-- **Sessions**: Include timestamp and version (`session-20250812-143000-v1.0.0.jsonl`)
-- **Command Names**: Use short, descriptive names without namespace (`review`, `optimize`)
-
-### Directory Management
-- Keep sessions directory clean (archive old sessions if needed)
-- Use meaningful names for generated artifacts
-- Group related prompts with consistent naming
-
-### Backup Strategy
-- Version control the entire repository structure
-- Regular exports of index files
-- Archive strategy for old sessions
-
-## Integration with Tools
-
-### Version Control
-```bash
-# Git works well with this structure
-git add prompts/regular-prompts/new-prompt/
-git commit -m "Add new React component reviewer prompt v1.0.0"
-
-# Tag important versions
-git tag prompt-react-reviewer-v1.0.0
-```
-
-### Text Editors
-- TOML syntax highlighting for metadata files
-- JSONL support for viewing conversations
-- File watchers for automatic index updates
-
-### Scripting
-```bash
-# Example: Create new prompt/command script
-#!/bin/bash
-PROMPT_TYPE=$1
-PROMPT_ID=$2
-VERSION=${3:-v1.0.0}
-
-mkdir -p "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION"
-mkdir -p "prompts/$PROMPT_TYPE/$PROMPT_ID/sessions"
-
-# Handle different content file extensions
-if [[ "$PROMPT_TYPE" == "slash-commands" ]]; then
-    cp "templates/slash-command-template.md" \
-       "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION/command.md"
-    
-    # Create symbolic links for slash commands
-    ln -s "$VERSION/command.md" "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/latest.md"
-    ln -s "../../prompts/$PROMPT_TYPE/$PROMPT_ID/versions/latest.md" ".claude/commands/$PROMPT_ID.md"
-else
-    cp "templates/${PROMPT_TYPE%-*}-template.txt" \
-       "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION/prompt.txt"
-fi
-
-cp "templates/metadata-template.toml" \
-   "prompts/$PROMPT_TYPE/$PROMPT_ID/versions/$VERSION/metadata.toml"
-```
+Check `metadata.toml` files for detailed information about each asset.

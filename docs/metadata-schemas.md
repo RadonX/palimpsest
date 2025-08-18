@@ -102,6 +102,60 @@ categories = ["string"]          # Required: Specification categories
 domains = ["string"]             # Optional: Technical domains
 ```
 
+### Output Style Schema
+
+```toml
+[output_style]
+id = "string"                    # Required: Unique style identifier
+type = "output-style"            # Required: Always "output-style"
+name = "string"                  # Required: Style name (matches id)
+title = "string"                 # Required: Human-readable title
+description = "string"           # Required: Purpose description
+version = "string"               # Required: Semantic version
+created = "datetime"             # Required: Creation timestamp
+updated = "datetime"             # Required: Last update timestamp
+
+[author]
+name = "string"                  # Required: Author name
+email = "string"                 # Optional: Author email
+
+[usage]
+scope = "string"                 # Optional: "project" or "user"
+activation = "string"            # Optional: How to activate (e.g., "/output-style explanatory")
+
+[behavior]
+maintains_core_capabilities = true  # Optional: Whether core Claude Code features remain
+modifies_system_prompt = true       # Optional: Whether this modifies system prompt
+focus = "string"                    # Optional: Primary focus area
+model = "string"                    # Optional: "opus", "sonnet", "haiku"
+insights = false                    # Optional: Whether style provides educational insights
+task_completion = true              # Optional: Whether style completes tasks
+collaborative = false               # Optional: Whether style requests user input
+
+[source]
+type = "string"                  # Optional: "built-in", "external", "adapted", "original"
+origin = "string"                # Optional: Source organization/author
+url = "string"                   # Optional: Source URL if external
+original_author = "string"       # Optional: Original author if external/adapted
+license = "string"               # Optional: License information
+
+[changelog]
+# Version history tracking
+[[changelog.entries]]
+version = "string"               # Version number
+date = "datetime"                # Release date
+changes = ["string"]             # List of changes made
+
+[tags]
+categories = ["string"]          # Required: Style categories
+domains = ["string"]             # Optional: Subject domains
+contexts = ["string"]            # Optional: Usage contexts
+
+[lineage]
+parent_version = "string"        # Optional: Previous version
+deprecated = false               # Optional: Whether deprecated
+```
+
 ### Slash Command Schema
 
 ```toml
