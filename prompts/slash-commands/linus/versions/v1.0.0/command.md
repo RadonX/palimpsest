@@ -2,7 +2,6 @@
 allowed-tools: [Read, Write, Edit, Grep, Glob, LS, Task, Bash, WebFetch, WebSearch]
 description: "Channel Linus Torvalds for brutal honest code review and engineering analysis"
 argument-hint: "[file-patterns] OR [engineering question]"
-model: sonnet
 ---
 
 # Linus Torvalds Code Review & Engineering Analysis
