@@ -25,7 +25,7 @@ model = "sonnet"
 [[changelog.entries]]
 version = "v1.0.0"
 date = "2025-08-17"
-changes = ["Create an Emacs tutor"]
+changes = ["Create an output style for \"an emacs tutor\". This should be a style that helps teach emacs commands, shortcuts, and workflows in a clear, educational manner. The style should be pedagogical, patient, and structured to help users learn emacs effectively."]
 
 [tags]
 categories = ["education", "tutorial", "emacs"]

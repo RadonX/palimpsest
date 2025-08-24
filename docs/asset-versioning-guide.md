@@ -13,7 +13,7 @@ asset-name/
 ├── sessions/                  # Conversation logs (slash commands only)
 └── versions/
     ├── v1.0.0/
-    │   ├── command.md        # or system_prompt.md for output-styles
+    │   ├── command.md        # or system_prompt.md for output-styles, agent.md for sub-agents
     │   └── metadata.toml     # Version-specific metadata
     └── v1.1.0/
         ├── command.md
@@ -26,10 +26,12 @@ asset-name/
 # 1. Create directory (adjust path for asset type)
 mkdir -p prompts/slash-commands/my-command/versions/v1.1.0        # slash commands
 mkdir -p prompts/output-style/my-style/versions/v1.1.0            # output styles
+mkdir -p prompts/sub-agent/my-agent/versions/v1.1.0               # sub-agents
 
 # 2. Copy previous version
 cp versions/v1.0.0/command.md versions/v1.1.0/command.md          # slash commands
 cp versions/v1.0.0/system_prompt.md versions/v1.1.0/system_prompt.md  # output styles
+cp versions/v1.0.0/agent.md versions/v1.1.0/agent.md              # sub-agents
 cp versions/v1.0.0/metadata.toml versions/v1.1.0/metadata.toml    # copy metadata
 
 # 3. Edit new version - make your changes
@@ -39,11 +41,12 @@ cp versions/v1.0.0/metadata.toml versions/v1.1.0/metadata.toml    # copy metadat
 # 5. Update latest.md symlink
 rm latest.md && ln -sf versions/v1.1.0/command.md latest.md       # slash commands
 rm latest.md && ln -sf versions/v1.1.0/system_prompt.md latest.md # output styles
+rm latest.md && ln -sf versions/v1.1.0/agent.md latest.md         # sub-agents
 ```
 
 ### Metadata Update
 ```toml
-[command]           # or [output_style] for output styles
+[command]           # or [output_style] for output styles, [sub_agent] for sub-agents
 version = "v1.1.0"
 updated = "2025-08-16T12:00:00Z"
 
@@ -83,3 +86,10 @@ rm latest.md && ln -sf versions/v1.0.0/command.md latest.md
 - **File**: `system_prompt.md`
 - **Metadata**: `[output_style]` section
 - **Usage**: System prompt modifications via `/output-style style-name`
+
+### Sub-Agents
+- **Location**: `prompts/sub-agent/`
+- **File**: `agent.md` (with YAML frontmatter)
+- **Metadata**: `[sub_agent]` section
+- **Usage**: Specialized AI assistants via Task tool delegation
+- **Features**: Context isolation, tool restrictions, domain expertise
