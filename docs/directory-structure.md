@@ -11,6 +11,30 @@ palimpsest/
 │   ├── usage-guide.md
 │   └── slash-command-workflow.md
 ├── prompts/
+│   ├── agents-md/
+│   │   └── {agent-id}/
+│   │       ├── latest.md              # Symlink to current version
+│   │       ├── sessions/
+│   │       │   └── session-{timestamp}-{version}.jsonl
+│   │       └── versions/
+│   │           ├── v1.0.0/
+│   │           │   ├── agents.md
+│   │           │   └── metadata.toml
+│   │           └── v1.1.0/
+│   │               ├── agents.md
+│   │               └── metadata.toml
+│   ├── sub-agent/
+│   │   └── {agent-id}/
+│   │       ├── latest.md              # Symlink to current version
+│   │       ├── sessions/
+│   │       │   └── session-{timestamp}-{version}.jsonl
+│   │       └── versions/
+│   │           ├── v1.0.0/
+│   │           │   ├── agent.md
+│   │           │   └── metadata.toml
+│   │           └── v1.1.0/
+│   │               ├── agent.md
+│   │               └── metadata.toml
 │   ├── slash-commands/
 │   │   └── {command-id}/
 │   │       ├── latest.md              # Symlink to current version
@@ -40,6 +64,12 @@ palimpsest/
 ```
 
 ## Directory Purposes
+
+### `/prompts/agents-md/`
+Instructions for AI coding agents, following the agents.md standard.
+
+### `/prompts/sub-agent/`
+Specialized AI assistants that can be delegated tasks.
 
 ### `/prompts/slash-commands/`
 Interactive commands for Claude Code. Markdown format with frontmatter metadata.

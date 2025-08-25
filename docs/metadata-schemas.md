@@ -1,31 +1,73 @@
 # Metadata Schemas
 
-## metadata.toml Schemas
+This document defines the structure of `metadata.toml` files used in Palimpsest.
 
-### Meta-Prompt Schema
+## Common Asset Metadata
+
+All asset types share the following common metadata fields and sections.
+
+### Core Attributes
+
+These attributes are required for every asset type and are defined in the main table of the asset (e.g., `[prompt]`, `[command]`).
+
+-   `id`: Unique identifier for the asset (string, required).
+-   `type`: The type of the asset (string, required).
+-   `title`: Human-readable title (string, required).
+-   `description`: A brief description of the asset's purpose (string, required).
+-   `version`: Semantic version string, e.g., "v1.0.0" (string, required).
+-   `created`: ISO 8601 timestamp of when the asset was created (datetime, required).
+-   `updated`: ISO 8601 timestamp of the last modification (datetime, required).
+
+### Common Sections
+
+The following sections are common to most asset types.
 
 ```toml
-[prompt]
-id = "string"                    # Required: Unique identifier
-type = "meta-prompt"             # Required: Always "meta-prompt"
-title = "string"                 # Required: Human-readable title
-description = "string"           # Required: Purpose description
-version = "string"               # Required: Semantic version (v1.0.0)
-created = "datetime"             # Required: ISO8601 timestamp
-updated = "datetime"             # Required: Last modification time
-
 [author]
 name = "string"                  # Required: Author name
 email = "string"                 # Optional: Author email
 organization = "string"          # Optional: Organization/team
+
+[tags]
+categories = ["string"]          # Required: At least one category
+domains = ["string"]             # Optional: Domain/subject areas
+
+[lineage]
+parent_version = "string"        # Optional: Previous version
+deprecated = false               # Optional: Default false
+
+[changelog]
+# Version history tracking
+[[changelog.entries]]
+version = "string"               # Version number
+date = "datetime"                # Release date
+changes = ["string"]             # List of changes made
+```
+
+## Asset-Specific Schemas
+
+The following sections define the schemas for each asset type. They include the common metadata fields and any additional fields specific to that asset type.
+
+---
+
+### Meta-Prompt Schema
+
+A prompt that generates other prompts.
+
+```toml
+[prompt]
+# Includes all Core Attributes.
+type = "meta-prompt"
+
+[author]
+# Includes the common [author] section.
 
 [generation]
 target_types = ["string"]        # Required: What this meta-prompt generates
 expected_outputs = ["string"]    # Optional: Expected output categories
 
 [tags]
-categories = ["string"]          # Required: At least one category
-domains = ["string"]             # Optional: Domain/subject areas
+# Includes the common [tags] section.
 difficulty = "string"            # Optional: beginner|intermediate|advanced
 
 [performance]
@@ -34,25 +76,22 @@ success_rate = 0.0               # Optional: Success rate (0.0-1.0)
 avg_generation_time = 0.0        # Optional: Average time in seconds
 
 [lineage]
-parent_version = "string"        # Optional: Previous version
-deprecated = false               # Optional: Default false
+# Includes the common [lineage] section.
 ```
+
+---
 
 ### Regular Prompt Schema
 
+A standard prompt for a specific task.
+
 ```toml
 [prompt]
-id = "string"                    # Required: Unique identifier
-type = "regular-prompt"          # Required: Always "regular-prompt"
-title = "string"                 # Required: Human-readable title
-description = "string"           # Required: Purpose description
-version = "string"               # Required: Semantic version
-created = "datetime"             # Required: Creation timestamp
-updated = "datetime"             # Required: Last update timestamp
+# Includes all Core Attributes.
+type = "regular-prompt"
 
 [author]
-name = "string"                  # Required: Author name
-email = "string"                 # Optional: Author email
+# Includes the common [author] section.
 
 [provenance]
 source_type = "string"           # Optional: "meta-prompt" if generated
@@ -68,56 +107,22 @@ framework = "string"             # Optional: Framework/technology
 language = "string"              # Optional: Programming language
 
 [tags]
-categories = ["string"]          # Required: Classification tags
-domains = ["string"]             # Optional: Subject domains
+# Includes the common [tags] section.
 ```
 
-### Dev Spec Schema
-
-```toml
-[spec]
-id = "string"                    # Required: Unique identifier
-type = "dev-spec"                # Required: Always "dev-spec"
-title = "string"                 # Required: Specification title
-description = "string"           # Required: What this spec covers
-version = "string"               # Required: Semantic version
-created = "datetime"             # Required: Creation timestamp
-
-[project]
-name = "string"                  # Optional: Project name
-component = "string"             # Optional: Component/module name
-priority = "string"              # Optional: low|medium|high|critical
-estimated_hours = 0              # Optional: Development estimate
-
-[requirements]
-functional = ["string"]          # Optional: Functional requirements
-non_functional = ["string"]      # Optional: Non-functional requirements
-
-[dependencies]
-services = ["string"]            # Optional: Required services
-libraries = ["string"]           # Optional: Required libraries
-
-[tags]
-categories = ["string"]          # Required: Specification categories
-domains = ["string"]             # Optional: Technical domains
-```
+---
 
 ### Output Style Schema
 
+A system prompt modification for Claude Code.
+
 ```toml
 [output_style]
-id = "string"                    # Required: Unique style identifier
-type = "output-style"            # Required: Always "output-style"
+# Includes all Core Attributes.
 name = "string"                  # Required: Style name (matches id)
-title = "string"                 # Required: Human-readable title
-description = "string"           # Required: Purpose description
-version = "string"               # Required: Semantic version
-created = "datetime"             # Required: Creation timestamp
-updated = "datetime"             # Required: Last update timestamp
 
 [author]
-name = "string"                  # Required: Author name
-email = "string"                 # Optional: Author email
+# Includes the common [author] section.
 
 [usage]
 scope = "string"                 # Optional: "project" or "user"
@@ -140,38 +145,29 @@ original_author = "string"       # Optional: Original author if external/adapted
 license = "string"               # Optional: License information
 
 [changelog]
-# Version history tracking
-[[changelog.entries]]
-version = "string"               # Version number
-date = "datetime"                # Release date
-changes = ["string"]             # List of changes made
+# Includes the common [changelog] section.
 
 [tags]
-categories = ["string"]          # Required: Style categories
-domains = ["string"]             # Optional: Subject domains
+# Includes the common [tags] section.
 contexts = ["string"]            # Optional: Usage contexts
 
 [lineage]
-parent_version = "string"        # Optional: Previous version
-deprecated = false               # Optional: Whether deprecated
+# Includes the common [lineage] section.
 ```
+
+---
 
 ### Slash Command Schema
 
+An interactive command for Claude Code.
+
 ```toml
 [command]
-id = "string"                    # Required: Unique command identifier
-type = "slash-command"           # Required: Always "slash-command"
+# Includes all Core Attributes.
 name = "string"                  # Required: Command name (without /)
-title = "string"                 # Required: Human-readable title
-description = "string"           # Required: Purpose description
-version = "string"               # Required: Semantic version
-created = "datetime"             # Required: Creation timestamp
-updated = "datetime"             # Required: Last update timestamp
 
 [author]
-name = "string"                  # Required: Author name (who added to palimpsest)
-email = "string"                 # Optional: Author email
+# Includes the common [author] section.
 
 [usage]
 namespace = "string"             # Optional: Command namespace (e.g., "frontend")
@@ -204,64 +200,86 @@ adapted = false                  # Optional: Whether adapted from external sourc
 adaptation_notes = "string"      # Optional: Notes about adaptations made
 
 [changelog]
-# Version history tracking
-[[changelog.entries]]
-version = "string"               # Version number
-date = "datetime"                # Release date
-changes = ["string"]             # List of changes made
+# Includes the common [changelog] section.
 
 [tags]
-categories = ["string"]          # Required: Command categories
-domains = ["string"]             # Optional: Subject domains
+# Includes the common [tags] section.
 contexts = ["string"]            # Optional: Usage contexts (coding, review, debug)
 
 [lineage]
-parent_version = "string"        # Optional: Previous version
-deprecated = false               # Optional: Whether deprecated
+# Includes the common [lineage] section.
 ```
 
-## palimpsest.toml Schema
+---
+
+### Agents.md Schema
+
+Instructions for an AI coding agent.
 
 ```toml
-[general]
-name = "string"                  # Required: Repository name
-version = "string"               # Required: Config version
-description = "string"           # Optional: Repository description
-default_author = "string"        # Optional: Default author name
-default_email = "string"         # Optional: Default author email
+[agents-md]
+# Includes all Core Attributes.
 
-[versioning]
-scheme = "semantic"              # Required: semantic|incremental|timestamp
-auto_increment = "patch"         # Optional: major|minor|patch
-require_changelog = true         # Optional: Default false
+[author]
+# Includes the common [author] section.
 
-[generation]
-auto_track_generated = true      # Optional: Auto-track generated prompts
-copy_to_type_directory = true    # Optional: Copy to target directories
-preserve_session_artifacts = true # Optional: Keep generation artifacts
+[project]
+name = "string"                  # Optional: Project name
+repository = "string"            # Optional: Project repository URL
 
-[storage]
-compression = false              # Optional: Compress files
-backup_enabled = true            # Optional: Enable backups
-backup_frequency = "daily"       # Optional: daily|weekly|monthly
-max_backups = 30                 # Optional: Max backup count
+[conventions]
+coding_style = "string"          # Optional: Link to coding style guide
+commit_messages = "string"       # Optional: Commit message conventions
+branching_strategy = "string"    # Optional: Branching strategy
 
-[indexing]
-auto_rebuild = true              # Optional: Auto-rebuild indices
-rebuild_frequency = "on_change"  # Optional: on_change|hourly|daily
-include_content_search = true    # Optional: Index file contents
+[build]
+command = "string"               # Optional: Build command
+dependencies = ["string"]        # Optional: Build dependencies
 
-[templates]
-default_meta_prompt = "string"   # Optional: Default template file
-default_regular_prompt = "string" # Optional: Default template file
-default_dev_spec = "string"      # Optional: Default template file
-default_slash_command = "string" # Optional: Default template file
+[test]
+command = "string"               # Optional: Test command
+framework = "string"             # Optional: Testing framework
 
-[validation]
-require_metadata = true          # Optional: Require metadata.toml
-require_tags = ["string"]        # Optional: Required tag categories
-validate_provenance = true       # Optional: Validate source links
+[changelog]
+# Includes the common [changelog] section.
+
+[tags]
+# Includes the common [tags] section.
+
+[lineage]
+# Includes the common [lineage] section.
 ```
+
+---
+
+### Sub-Agent Schema
+
+A specialized AI assistant for task delegation.
+
+```toml
+[sub_agent]
+# Includes all Core Attributes.
+name = "string"                  # Required: Agent name
+
+[author]
+# Includes the common [author] section.
+
+[behavior]
+context_isolation = true         # Optional: Whether the agent has isolated context
+tool_restrictions = ["string"]   # Optional: List of restricted tools
+domain_expertise = ["string"]    # Optional: List of expertise domains
+
+[changelog]
+# Includes the common [changelog] section.
+
+[tags]
+# Includes the common [tags] section.
+
+[lineage]
+# Includes the common [lineage] section.
+```
+
+
 
 ## Validation Rules
 

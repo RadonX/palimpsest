@@ -11,7 +11,7 @@ Palimpsest uses four primary file formats:
 ## TOML Files
 
 ### Purpose
-- Configuration files (`palimpsest.toml`)
+
 - Metadata files (`metadata.toml`)
 - Template definitions
 - Schema specifications
@@ -93,10 +93,12 @@ Palimpsest uses four primary file formats:
 ### File Extensions
 - `.json` for all JSON files
 
-## Markdown Files (Slash Commands)
+## Markdown Files
 
 ### Purpose
 - Slash command definitions (`command.md`)
+- Agent instruction definitions (`agents.md`)
+- Sub-agent definitions (`agent.md`)
 - Support YAML frontmatter for Claude Code metadata
 - Interactive development workflows
 
@@ -112,7 +114,7 @@ Palimpsest uses four primary file formats:
 - Human-readable and version controllable
 
 ### File Extensions
-- `.md` for slash command files
+- `.md` for slash command, agent instruction, and sub-agent files
 
 ## Character Encoding
 

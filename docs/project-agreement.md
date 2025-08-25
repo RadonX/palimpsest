@@ -15,8 +15,10 @@ A filesystem-only layout for storing meta prompts, the single conversation that 
 ### 2. Prompt Type Hierarchy
 - **Meta-prompts**: Generate other prompts
 - **Regular prompts**: Standard prompts for specific tasks  
-- **Dev specs**: Development specifications and requirements
+
 - **Slash commands**: Interactive Claude Code commands with frontmatter
+- **Agents.md Instructions**: Versioned instructions for AI coding agents (agents.md)
+- **Sub-Agents**: Specialized AI assistants for task delegation
 - **Extensible**: Support for additional prompt types
 
 ### 3. Complete Provenance Tracking

@@ -6,6 +6,7 @@ This directory contains the project documentation for the Palimpsest prompt mana
 
 - **[project-agreement.md](project-agreement.md)** - Core project specifications and agreements
 - **[directory-structure.md](directory-structure.md)** - Complete directory layout and organization
+- **[asset-versioning-guide.md](asset-versioning-guide.md)** - Guide for versioning assets
 - **[file-formats.md](file-formats.md)** - Detailed file format specifications
 - **[metadata-schemas.md](metadata-schemas.md)** - TOML and JSON schema definitions
 - **[usage-guide.md](usage-guide.md)** - How to use the system

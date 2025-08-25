@@ -2,7 +2,7 @@
 
 ## Overview
 
-Palimpsest tracks the lineage and usage of slash commands and output styles to understand their evolution and effectiveness.
+Palimpsest tracks the lineage and usage of slash commands, output styles, agents.md instructions, and sub-agents to understand their evolution and effectiveness.
 
 ## Tracking Levels
 
@@ -26,7 +26,7 @@ Palimpsest tracks the lineage and usage of slash commands and output styles to u
 ### In Asset Metadata
 Version tracking in `metadata.toml`:
 ```toml
-[command]  # or [output_style]
+[command]  # or [output_style], [agents-md], [sub_agent]
 version = "v1.1.0"
 created = "2025-08-17T00:00:00Z"
 updated = "2025-08-17T12:00:00Z"
@@ -53,6 +53,8 @@ Usage tracking in session files:
 ```
 prompts/slash-commands/{id}/sessions/session-{timestamp}-{version}.jsonl
 prompts/output-style/{id}/sessions/session-{timestamp}-{version}.jsonl
+prompts/agents-md/{id}/sessions/session-{timestamp}-{version}.jsonl
+prompts/sub-agent/{id}/sessions/session-{timestamp}-{version}.jsonl
 ```
 
 ## Query Capabilities

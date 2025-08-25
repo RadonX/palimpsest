@@ -42,6 +42,22 @@ cp prompts/output-style/learning/latest.md .claude/output-styles/learning.md
 /output-style learning
 ```
 
+## Using AGENTS.md
+
+### Installation
+Copy the coding agent instruction from `prompts/agents-md/{agents-name}/latest.md`.
+
+```bash
+# Copy to user-level agent directory
+cp prompts/agents-md/{agents-name}/latest.md .claude/CLAUDE.md
+cp prompts/agents-md/{agents-name}/latest.md .gemini/AGENTS.md
+# Copy to project root  
+cp prompts/agents-md/{agents-name}/latest.md GEMINI.md
+```
+
+### Usage in Coding Agents
+The AI coding agent will read this file to understand project conventions, build steps, and other essential guidelines.
+
 ## Browsing Assets
 
 ### By Category
