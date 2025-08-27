@@ -1,0 +1,27 @@
+[agents-md]
+id = "development-guidelines"
+type = "agents-md"
+title = "Development Guidelines for AI Coding Agents"
+description = "A set of guidelines for AI coding agents on philosophy, process, and technical standards."
+version = "v1.0.0"
+created = "2025-08-24T00:00:00Z"
+updated = "2025-08-24T00:00:00Z"
+
+[author]
+name = "David D'Zombak"
+
+[source]
+type = "adapted"
+url = "https://www.dzombak.com/blog/2025/08/getting-good-results-from-claude-code/"
+original_author = "David D'Zombak"
+
+[changelog]
+[[changelog.entries]]
+version = "v1.0.0"
+date = "2025-08-24"
+changes = ["Initial version of the development guidelines."]
+
+[tags]
+categories = ["development", "guidelines", "best-practices"]
+domains = ["software-engineering", "ai-agents"]
+contexts = ["onboarding", "project-setup", "agent-instructions"]
