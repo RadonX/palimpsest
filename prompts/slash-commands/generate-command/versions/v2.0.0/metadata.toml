@@ -23,6 +23,7 @@ model = "sonnet"
 [source]
 type = "original"
 original_author = "markshawn2020"
+generator_model = "claude-sonnet-4"
 
 [changelog]
 [[changelog.entries]]

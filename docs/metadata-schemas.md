@@ -42,6 +42,15 @@ deprecated = false               # Optional: Default false
 version = "string"               # Version number
 date = "datetime"                # Release date
 changes = ["string"]             # List of changes made
+
+[source]
+type = "string"                  # "original" | "user-created" | "external" | "adapted" | "built-in"
+origin = "string"                # Optional: Path or origin label
+url = "string"                   # Optional: Source URL if external
+original_author = "string"       # Optional: Original author if external/adapted
+license = "string"               # Optional: License info
+adaptation_notes = "string"      # Optional: Notes about adaptations
+generator_model = "string"       # Optional: AI model that generated this asset (e.g., "claude-sonnet-4")
 ```
 
 ## Asset-Specific Schemas
@@ -137,13 +146,6 @@ insights = false                    # Optional: Whether style provides education
 task_completion = true              # Optional: Whether style completes tasks
 collaborative = false               # Optional: Whether style requests user input
 
-[source]
-type = "string"                  # Optional: "built-in", "external", "adapted", "original"
-origin = "string"                # Optional: Source organization/author
-url = "string"                   # Optional: Source URL if external
-original_author = "string"       # Optional: Original author if external/adapted
-license = "string"               # Optional: License information
-
 [changelog]
 # Includes the common [changelog] section.
 
@@ -153,6 +155,7 @@ contexts = ["string"]            # Optional: Usage contexts
 
 [lineage]
 # Includes the common [lineage] section.
+
 ```
 
 ---
@@ -190,14 +193,6 @@ source_version = "string"        # Optional: Source version
 source_session = "string"        # Optional: Source session ID
 generation_timestamp = "datetime" # Optional: When generated
 manually_edited = false          # Optional: Has been manually modified
-
-[source]
-type = "string"                  # Optional: "external", "adapted", "original"
-url = "string"                   # Optional: Source URL if external
-original_author = "string"       # Optional: Original author if external/adapted
-license = "string"               # Optional: License information
-adapted = false                  # Optional: Whether adapted from external source
-adaptation_notes = "string"      # Optional: Notes about adaptations made
 
 [changelog]
 # Includes the common [changelog] section.

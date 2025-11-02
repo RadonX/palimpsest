@@ -59,6 +59,13 @@ date = "2025-08-16"
 changes = ["Fixed quotes", "Added missing content", "Removed redundancy"]
 ```
 
+If AI-generated, record the generator under `[source]`:
+
+```toml
+[source]
+generator_model = "claude-sonnet-4"
+```
+
 ## Semantic Versioning
 
 - **v2.0.0 (Major)**: Breaking changes (arguments, behavior, tools)

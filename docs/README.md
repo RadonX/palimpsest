@@ -1,25 +1,33 @@
 # Palimpsest Documentation
 
-This directory contains the project documentation for the Palimpsest prompt management system.
+Palimpsest is a filesystem‑first system for managing prompts, output styles, and project commands for Claude Code. Assets are plain files, versioned semantically, and tracked with explicit metadata and provenance.
 
-## Documents
+## Start Here
+- `directory-structure.md`: Repository layout and where things live.
+- `usage-guide.md`: How to install and use assets in Claude Code.
+- `asset-versioning-guide.md`: Create a new version and update `latest.md`.
 
-- **[project-agreement.md](project-agreement.md)** - Core project specifications and agreements
-- **[directory-structure.md](directory-structure.md)** - Complete directory layout and organization
-- **[asset-versioning-guide.md](asset-versioning-guide.md)** - Guide for versioning assets
-- **[file-formats.md](file-formats.md)** - Detailed file format specifications
-- **[metadata-schemas.md](metadata-schemas.md)** - TOML and JSON schema definitions
-- **[usage-guide.md](usage-guide.md)** - How to use the system
-- **[provenance-tracking.md](provenance-tracking.md)** - How generation tracking works
-- **[slash-command-best-practices.md](slash-command-best-practices.md)** - Best practices for Claude Code slash commands
-- **[slash-command-workflow.md](slash-command-workflow.md)** - Complete workflow for adding slash commands with symbolic links
+## Docs Map
+- Core Reference
+  - `project-agreement.md`: Goals, scope, and key decisions.
+  - `directory-structure.md`: Canonical layout and naming.
+  - `file-formats.md`: TOML/Markdown/JSON/JSONL conventions.
+  - `metadata-schemas.md`: Canonical metadata tables (single source of truth).
+  - `provenance-tracking.md`: Lineage, sessions, and audit trail.
+- Asset Guides
+  - `output-style-guide.md`: What output styles are and how to structure them.
+  - `slash-command-best-practices.md`: Frontmatter, tools, naming, and safety.
+  - `slash-command-workflow.md`: Creating links, sessions, and updates.
+- How‑To
+  - `asset-versioning-guide.md`: Add a new version and edit `metadata.toml`.
+  - `usage-guide.md`: Copy assets into user/project paths and run.
 
-## Quick Reference
+## Maintenance & Conventions
+- Single source of truth: schemas live in `metadata-schemas.md`. Do not redefine `[source]`, `[provenance]`, or field types elsewhere.
+- Versioning: never edit old `versions/vX.Y.Z`; add a new version and relink `latest.md`. Sessions use `session-YYYYMMDD-HHMMSS-vX.Y.Z.jsonl`.
+- Naming: IDs are kebab‑case; filenames are fixed per type (`command.md`, `system_prompt.md`, `agents.md`); versions use `vMAJOR.MINOR.PATCH`.
+- Attribution & generators: record origins via `[source]` (see schema). If AI‑generated, include `[source].generator_model` (use `claude-sonnet-4` in examples). Runtime model stays in `[behavior].model`.
+- Keep docs DRY: link to the schema for field details; use minimal examples in guides.
+- Consistency checks: verify `latest.md` symlinks resolve; grep docs for stale model or command examples when updating.
 
-Palimpsest is a filesystem-based layout for storing:
-- Meta prompts (that generate other prompts)
-- Regular prompts  
-- Development specifications
-- All conversations that authored each version
-- Generated sessions from each prompt version
-- Complete provenance tracking from meta-prompts to generated prompts
+Keep this file as the entry point; when adding/changing docs, update links and summaries here.

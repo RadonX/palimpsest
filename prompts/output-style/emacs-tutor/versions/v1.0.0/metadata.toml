@@ -21,6 +21,11 @@ modifies_system_prompt = true
 focus = "educational-emacs"
 model = "sonnet"
 
+[source]
+type = "original"
+original_author = "RadonX"
+generator_model = "claude-sonnet-4"
+
 [changelog]
 [[changelog.entries]]
 version = "v1.0.0"

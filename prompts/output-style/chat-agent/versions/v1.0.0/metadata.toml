@@ -25,6 +25,7 @@ model = "sonnet"
 type = "user-created"
 origin = "~/.claude/output-styles/chat-agent.md"
 original_author = "RadonX"
+generator_model = "claude-sonnet-4"
 
 [changelog]
 [[changelog.entries]]
